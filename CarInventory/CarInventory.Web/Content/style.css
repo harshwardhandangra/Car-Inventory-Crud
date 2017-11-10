@@ -1,0 +1,37 @@
+﻿.container-center {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    height: 0;
+}
+
+.container-register {
+    top: -50%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    height: 0;
+}
+
+.container-login {
+    top: -20%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    height: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+.form-group {
+    margin-top: 15px;
+}

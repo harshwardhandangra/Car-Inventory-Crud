@@ -1,0 +1,65 @@
+﻿@using CarInventory.Web.Utilites;
+@model CarInventory.Core.Users
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container container-login">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("Login", "User", FormMethod.Post, new { id = "loginform", role = "form" }))
+                {
+                    if (ViewBag.UserStatus != null)
+                    {
+                        if (Convert.ToBoolean(ViewBag.UserStatus))
+                        {
+                            Log.Info("Login Successful...");
+                            Response.Redirect("~/Car/Index");
+                        }
+                        else
+                        {
+                            Log.Error("Login Failed...");
+                            <p class="label-danger">Invaild User Name and Password</p>
+                        }
+                    }
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            User Name or Email
+                        </div>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.Email, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            Password
+                        </div>
+                        <div class="col-md-8">
+                            @Html.PasswordFor(model => model.Password, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary center-block" value="Submit">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+</body>
+</html>
