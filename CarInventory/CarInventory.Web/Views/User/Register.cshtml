@@ -1,0 +1,88 @@
+﻿@using CarInventory.Web.Utilites;
+@model CarInventory.Core.Users
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container container-register">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("Register", "User", FormMethod.Post, new { id = "signupform", role = "form" }))
+                {
+                    if (ViewBag.UserId != null)
+                    {
+                        if (ViewBag.UserId != 0)
+                        {
+                            Log.Info("Registered Successful...");
+                            <p>Please check your mail to verify the account</p>
+                        }
+                        else
+                        {
+                            Log.Error("Registeration Failed...");
+                            <p class="label-danger"></p>
+                        }
+                    }
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label id="error" class="label-danger"></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            Email
+                        </div>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.Email, htmlAttributes: new { @class = "form-control", @id = "email" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            User Name
+                        </div>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.Username, htmlAttributes: new { @class = "form-control", @id = "username" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            Password
+                        </div>
+                        <div class="col-md-8">
+                            @Html.PasswordFor(model => model.Password, htmlAttributes: new { @class = "form-control", @id = "password" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            Contact Number
+                        </div>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.ContactNumber, htmlAttributes: new { @class = "form-control", @id = "contactnumber" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-group">
+                        <input type="submit" id="register" class="btn btn-primary center-block" value="Submit">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+</body>
+</html>

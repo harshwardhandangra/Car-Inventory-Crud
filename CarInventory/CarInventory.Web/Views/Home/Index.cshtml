@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container container-center">
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary center-block" onclick="location.href='@Url.Action("Login","User")'">Login</button>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary center-block" onclick="location.href='@Url.Action("Register","User")'">Register</button>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
