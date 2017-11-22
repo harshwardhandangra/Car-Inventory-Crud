@@ -97,6 +97,7 @@
       <LastGenOutput>CarInventory.Context.cs</LastGenOutput>
       <DependentUpon>CarInventory.edmx</DependentUpon>
     </Content>
+    <Content Include="CarInventory.edmx.sql" />
     <Content Include="CarInventory.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CarInventory.edmx</DependentUpon>

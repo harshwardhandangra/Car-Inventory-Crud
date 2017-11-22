@@ -4,77 +4,77 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CarsInventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Cars">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
-          <Property Name="Model" Type="nvarchar" MaxLength="50" />
-          <Property Name="Year" Type="int" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="New" Type="bit" />
-        </EntityType>
-        <EntityType Name="Cars_Users_Mapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CarsId" Type="int" />
-          <Property Name="UsersId" Type="int" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="nvarchar(max)" />
-          <Property Name="Password" Type="nvarchar(max)" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="LastLogin" Type="datetime" />
-          <Property Name="IsEmailVerified" Type="bit" />
-          <Property Name="ContactNumber" Type="nvarchar" MaxLength="15" />
-        </EntityType>
-        <Association Name="FK_Cars_Users_Mapping_Cars">
-          <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
-          <End Role="Cars_Users_Mapping" Type="Self.Cars_Users_Mapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cars">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Cars_Users_Mapping">
-              <PropertyRef Name="CarsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cars_Users_Mapping_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Cars_Users_Mapping" Type="Self.Cars_Users_Mapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Cars_Users_Mapping">
-              <PropertyRef Name="UsersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="CarsInventoryModelStoreContainer">
-          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cars_Users_Mapping" EntityType="Self.Cars_Users_Mapping" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Cars_Users_Mapping_Cars" Association="Self.FK_Cars_Users_Mapping_Cars">
-            <End Role="Cars" EntitySet="Cars" />
-            <End Role="Cars_Users_Mapping" EntitySet="Cars_Users_Mapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cars_Users_Mapping_Users" Association="Self.FK_Cars_Users_Mapping_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Cars_Users_Mapping" EntitySet="Cars_Users_Mapping" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="CarsInventoryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CarsInventoryModelStoreContainer">
+    <EntitySet Name="Cars" EntityType="CarsInventoryModel.Store.Cars" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cars_Users_Mapping" EntityType="CarsInventoryModel.Store.Cars_Users_Mapping" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="CarsInventoryModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Cars_Users_Mapping_Cars" Association="CarsInventoryModel.Store.FK_Cars_Users_Mapping_Cars">
+      <End Role="Car" EntitySet="Cars" />
+      <End Role="Cars_Users_Mapping" EntitySet="Cars_Users_Mapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cars_Users_Mapping_Users" Association="CarsInventoryModel.Store.FK_Cars_Users_Mapping_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Cars_Users_Mapping" EntitySet="Cars_Users_Mapping" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cars">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Brand" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Model" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Year" Type="int" Nullable="true" />
+    <Property Name="Price" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="New" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Cars_Users_Mapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarsId" Type="int" Nullable="true" />
+    <Property Name="UsersId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="true" />
+    <Property Name="LastLogin" Type="datetime" Nullable="true" />
+    <Property Name="IsEmailVerified" Type="bit" Nullable="true" />
+    <Property Name="ContactNumber" Type="nvarchar" Nullable="true" MaxLength="15" />
+  </EntityType>
+  <Association Name="FK_Cars_Users_Mapping_Cars">
+    <End Role="Car" Type="CarsInventoryModel.Store.Cars" Multiplicity="0..1" />
+    <End Role="Cars_Users_Mapping" Type="CarsInventoryModel.Store.Cars_Users_Mapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cars_Users_Mapping">
+        <PropertyRef Name="CarsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cars_Users_Mapping_Users">
+    <End Role="User" Type="CarsInventoryModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Cars_Users_Mapping" Type="CarsInventoryModel.Store.Cars_Users_Mapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cars_Users_Mapping">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CarsInventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -155,46 +155,45 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CarsInventoryModelStoreContainer" CdmEntityContainer="CarsInventoryEntities">
-          <EntitySetMapping Name="Cars">
-            <EntityTypeMapping TypeName="CarsInventoryModel.Car">
-              <MappingFragment StoreEntitySet="Cars">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Brand" ColumnName="Brand" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="New" ColumnName="New" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cars_Users_Mapping">
-            <EntityTypeMapping TypeName="CarsInventoryModel.Cars_Users_Mapping">
-              <MappingFragment StoreEntitySet="Cars_Users_Mapping">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CarsId" ColumnName="CarsId" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="CarsInventoryModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
-                <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CarsInventoryModelStoreContainer" CdmEntityContainer="CarsInventoryEntities">
+    <EntitySetMapping Name="Cars">
+      <EntityTypeMapping TypeName="IsTypeOf(CarsInventoryModel.Car)">
+        <MappingFragment StoreEntitySet="Cars">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="New" ColumnName="New" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cars_Users_Mapping">
+      <EntityTypeMapping TypeName="IsTypeOf(CarsInventoryModel.Cars_Users_Mapping)">
+        <MappingFragment StoreEntitySet="Cars_Users_Mapping">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CarsId" ColumnName="CarsId" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(CarsInventoryModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -208,7 +207,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

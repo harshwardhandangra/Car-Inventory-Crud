@@ -82,11 +82,8 @@ namespace CarInventory.Web.Controllers
                 var mail = CryptoEngine.Decrypt(q);
                 UsersRepository usersRepo = new UsersRepository();
                 var userid = usersRepo.GetUserFromEmail(mail);
-                var result = usersRepo.VerifiedEmailandActiveUser(userid);
-                if (result == 1)
-                {
-                    RedirectToAction("Index", "Car");
-                }
+                usersRepo.VerifiedEmailandActiveUser(userid);
+                RedirectToAction("Index", "Car");
             }
             catch (Exception ex)
             {
