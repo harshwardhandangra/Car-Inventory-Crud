@@ -3,7 +3,7 @@
     var username = $("#username");
     var signupform = $("#signupform");
     var loginform = $("#loginform");
-    username.change(function () {
+    username.change(function() {
         if (!hasWhiteSpace(username.val())) {
             $("#error").text("");
             $.ajax({
@@ -11,7 +11,7 @@
                 url: "/api/user/usernameexits",
                 data: { username: username.val() },
                 cache: false,
-                success: function (data) {
+                success: function(data) {
                     if (data) {
                         $("#error").text("Username Already Exists");
                     } else {
@@ -19,12 +19,11 @@
                     }
                 }
             });
-        }
-        else {
+        } else {
             $("#error").text("Username don't have a white space");
         }
-    })
-    email.change(function () {
+    });
+    email.change(function() {
         if (!hasWhiteSpace(username.val())) {
             $("#error").text("");
             $.ajax({
@@ -32,7 +31,7 @@
                 url: "/api/user/emailexits",
                 data: { email: email.val() },
                 cache: false,
-                success: function (data) {
+                success: function(data) {
                     if (data) {
                         $("#error").text("Email Already Exists");
                     } else {
@@ -41,7 +40,7 @@
                 }
             });
         }
-    })
+    });
     signupform.validate({
         rules: {
             Username: {
@@ -76,3 +75,4 @@ $(document).ready(function () {
 function hasWhiteSpace(s) {
     return /\s/g.test(s);
 }
+
